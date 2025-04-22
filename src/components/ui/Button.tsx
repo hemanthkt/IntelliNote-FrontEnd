@@ -1,10 +1,12 @@
+import { ReactElement } from "react";
+
 interface ButtonProps {
   variant: "primary" | "secondary";
   onClick: () => void;
   text: string;
   size: "sm" | "md" | "lg";
-  startIcon?: any;
-  endIcon?: any;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
 }
 
 const variantStyles = {
@@ -12,7 +14,8 @@ const variantStyles = {
   secondary: "bg-purple-300 text-purple-600",
 };
 
-const defaultStyles = "rounded-lg flex text-xs";
+const defaultStyles =
+  "rounded-md flex text-sm font-light font-sans items-center";
 
 const sizeStyles = {
   sm: "py-1 px-2",
