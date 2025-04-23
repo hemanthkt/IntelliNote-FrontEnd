@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary";
-  onClick: () => void;
+  onClick?: () => void;
   text: string;
   size: "sm" | "md" | "lg";
   startIcon?: ReactElement;
@@ -26,9 +26,10 @@ const sizeStyles = {
 export const Button = (props: ButtonProps) => {
   return (
     <button
+      onClick={props.onClick}
       className={`${variantStyles[props.variant]} ${defaultStyles} ${
         sizeStyles[props.size]
-      }`}
+      } cursor-pointer`}
     >
       {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null}{" "}
       {props.text} {props.endIcon}
