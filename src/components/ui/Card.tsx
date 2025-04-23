@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ShareIcon } from "../../icons/ShareIcon";
 
 declare global {
@@ -7,28 +6,30 @@ declare global {
   }
 }
 
-export function Card() {
-  useEffect(() => {
-    // Check if the Twitter widgets script has loaded
-    if (window.twttr && window.twttr.widgets) {
-      window.twttr.widgets.load();
-    }
-  }, []);
+interface CardProps {
+  title: string;
+  link: string;
+  type: "twitter" | "youtube";
+}
 
+export function Card({ title, link, type }: CardProps) {
   return (
     <div>
-      <div className="p-4 rounded-md max-w-72 bg-white outline-slate-200 border border-slate-200">
-        <div className="flex justify-between">
+      <div className="p-4 rounded-md max-w-72 min-w-72 min-h-48 bg-white outline-slate-200 border border-slate-200">
+        <div className="flex items-center justify-between">
           <div className="flex items-center text-md">
             <div className="text-gray-500 pr-2">
               <ShareIcon size="md" />
             </div>
-            Project Idea
+            {title}
           </div>
 
           <div className="flex">
             <div className="pr-2 text-gray-500">
-              <ShareIcon size="md" />
+              <a href={link}>
+                {" "}
+                <ShareIcon size="md" />
+              </a>
             </div>
 
             <div className="pr-2 text-gray-500">
@@ -38,19 +39,23 @@ export function Card() {
         </div>
 
         <div className="pt-4 ">
-          {/* <iframe
-            className="w-full rounded-md"
-            src="https://www.youtube.com/embed/BQiisck38ls?si=JjujKZzqG1Kbo0Tb"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe> */}
+          {type === "twitter" && (
+            <blockquote className="twitter-tweet">
+              <a href={link.replace("x", "twitter")}></a>
+            </blockquote>
+          )}
 
-          <blockquote className="twitter-tweet">
-            <a href="https://x.com/thedankoe/status/1914340861787381901"></a>
-          </blockquote>
+          {type === "youtube" && (
+            <iframe
+              className="w-full rounded-md"
+              src={link.replace("watch", "embed").replace("?v=", "/")}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
         </div>
       </div>
     </div>
