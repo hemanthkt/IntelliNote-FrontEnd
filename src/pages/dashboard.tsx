@@ -5,9 +5,11 @@ import { CreateComponent } from "../components/ui/CreateContentModal";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Sidebar } from "../components/ui/Sidebar";
+import { useContent } from "./hooks";
 
 export function DashBoard() {
   const [modalOpen, setModalOpen] = useState(false);
+  const contents = useContent();
 
   return (
     <>
@@ -42,11 +44,10 @@ export function DashBoard() {
         </div>
 
         <div className="flex gap-4">
-          <Card
-            link="https://x.com/hemanthkt_/status/1914784005083570647"
-            title="Tweet"
-            type="twitter"
-          />
+          {contents?.map(({ title, type, link }) => (
+            <Card key={title} link={link} title={title} type={type} />
+          ))}
+
           <Card
             link="https://www.youtube.com/watch?v=Co3jhNSkUK8"
             title="Youtube video"
