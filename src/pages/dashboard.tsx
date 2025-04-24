@@ -21,7 +21,7 @@ export function DashBoard() {
         <Sidebar />
       </div>
 
-      <div className="p-4 ml-72 bg-gray-100 min-h-screen">
+      <div className="p-4 ml-72 bg-gray-100 min-h-screen  ">
         <CreateComponent
           open={modalOpen}
           onClose={() => {
@@ -47,16 +47,10 @@ export function DashBoard() {
           />
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           {contents.map(({ title, type, link }) => (
             <Card key={title} link={link} title={title} type={type} />
           ))}
-
-          <Card
-            link="https://www.youtube.com/watch?v=Co3jhNSkUK8"
-            title="Youtube video"
-            type="youtube"
-          />
         </div>
       </div>
     </>
