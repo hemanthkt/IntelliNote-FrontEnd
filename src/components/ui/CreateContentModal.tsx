@@ -1,5 +1,6 @@
 import { CrossIcon } from "../../icons/CrossIcon";
 import { Button } from "./Button";
+import { Input } from "./Input";
 
 export function CreateComponent({ open, onClose }) {
   return (
@@ -26,16 +27,5 @@ export function CreateComponent({ open, onClose }) {
         )}
       </div>
     </div>
-  );
-}
-
-function Input({ onChange, placeholder }) {
-  return (
-    <input
-      type={"text"}
-      placeholder={placeholder}
-      className="rounded px-4 py-2 border"
-      onChange={onChange}
-    />
   );
 }
