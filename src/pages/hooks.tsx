@@ -11,7 +11,7 @@ export function useContent() {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((response) => {
-        setContent(response.data.allContent);
+        setContent(response.data);
       });
   }, []);
 

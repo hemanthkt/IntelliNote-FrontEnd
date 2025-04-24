@@ -11,6 +11,10 @@ export function DashBoard() {
   const [modalOpen, setModalOpen] = useState(false);
   const contents = useContent();
 
+  function log() {
+    console.log(contents);
+  }
+
   return (
     <>
       <div>
@@ -27,7 +31,7 @@ export function DashBoard() {
         <div className="flex justify-end gap-4  ">
           <Button
             variant="secondary"
-            onClick={() => {}}
+            onClick={log}
             text="Share"
             size="sm"
             startIcon={<ShareIcon size="md" />}
@@ -44,7 +48,7 @@ export function DashBoard() {
         </div>
 
         <div className="flex gap-4">
-          {contents?.map(({ title, type, link }) => (
+          {contents.map(({ title, type, link }) => (
             <Card key={title} link={link} title={title} type={type} />
           ))}
 
